@@ -13,9 +13,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="950.0" spacing="10.0" stylesheets="@order.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="order.orderr.OrderController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="950.0" spacing="10.0" stylesheets="@order.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="order.order_main.OrderController">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -30,7 +31,6 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -73,7 +73,7 @@
                   <Label fx:id="errorName" textFill="RED" BorderPane.alignment="CENTER" />
                </bottom>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="16">
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="15">
                <center>
                   <TextField fx:id="address" BorderPane.alignment="CENTER" />
                </center>
@@ -81,22 +81,25 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Megrendelő címe: " BorderPane.alignment="CENTER" />
                </left>
                <bottom>
-                   <Label fx:id="errorName2" textFill="RED" BorderPane.alignment="CENTER" />
+                   <Label fx:id="errorAddress" textFill="RED" BorderPane.alignment="CENTER" />
                </bottom>
             </BorderPane>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alapok:" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Feltétek:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sajtok:" GridPane.rowIndex="6" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rendelje meg pizzáját!" textAlignment="CENTER" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rendelje meg pizzáját!" textAlignment="CENTER">
+               <font>
+                  <Font size="38.0" />
+               </font></Text>
             <Label fx:id="errorBase" textFill="#ff1313" GridPane.rowIndex="5" />
             <Label fx:id="errorCheese" textFill="RED" BorderPane.alignment="CENTER" GridPane.rowIndex="11" />
          </children>
       </GridPane>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane prefHeight="150.0" prefWidth="200.0">
                <center>
-                  <TextField fx:id="payable" alignment="CENTER_RIGHT" text="0" BorderPane.alignment="CENTER" />
+                  <TextField fx:id="payable" alignment="CENTER_RIGHT" editable="false" text="0" BorderPane.alignment="CENTER" />
                </center>
                <left>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fizetendő:" BorderPane.alignment="CENTER" />
@@ -108,33 +111,65 @@
             <BorderPane prefHeight="100.0" prefWidth="122.0" />
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <left>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ön " BorderPane.alignment="CENTER" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ön " BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="21.0" />
+                     </font></Text>
                </left>
                <center>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="{ }" BorderPane.alignment="CENTER" />
+                  <Text fx:id="winPercent" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="21.0" />
+                     </font></Text>
                </center>
                <right>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="\%-ot nyert!!!" wrappingWidth="124.5185546875" BorderPane.alignment="CENTER" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="\%-ot nyert!!!" wrappingWidth="124.5185546875" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="21.0" />
+                     </font></Text>
                </right></BorderPane>
             <BorderPane prefHeight="100.0" prefWidth="127.0">
                <top>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pörgessen %-okért!" wrappingWidth="156.0126953125" BorderPane.alignment="CENTER" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pörgessen %-okért!" wrappingWidth="156.0126953125" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Text>
                </top>
                <center>
                   <Button fx:id="spinButton" mnemonicParsing="false" onAction="#spinAction" prefHeight="21.0" prefWidth="108.0" text="PÖRGETÉS" BorderPane.alignment="CENTER" />
                </center></BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <left>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-&gt;" wrappingWidth="27.51171875" BorderPane.alignment="CENTER" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-&gt;" wrappingWidth="27.51171875" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Text>
                </left>
                <center>
                   <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
                         <Circle fill="DODGERBLUE" layoutX="101.0" layoutY="59.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-                        <Text fx:id="zero" layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0%" />
-                        <Text fx:id="three" layoutX="84.0" layoutY="-22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3%" />
-                        <Text fx:id="five" layoutX="167.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5%" />
-                        <Text fx:id="ten" layoutX="84.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10%" />
+                        <Text fx:id="zero" layoutX="14.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                           <font>
+                              <Font size="32.0" />
+                           </font></Text>
+                        <Text fx:id="three" layoutX="92.0" layoutY="-9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3">
+                           <font>
+                              <Font size="32.0" />
+                           </font></Text>
+                        <Text fx:id="five" layoutX="163.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5">
+                           <font>
+                              <Font size="32.0" />
+                           </font></Text>
+                        <Text fx:id="ten" layoutX="83.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10">
+                           <font>
+                              <Font size="32.0" />
+                           </font></Text>
+                        <Text layoutX="74.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%">
+                           <font>
+                              <Font size="64.0" />
+                           </font>
+                        </Text>
                      </children>
                   </Pane>
                </center>

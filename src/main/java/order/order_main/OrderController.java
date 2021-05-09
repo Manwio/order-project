@@ -1,4 +1,4 @@
-package order.orderr;
+package order.order_main;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +21,7 @@ public class OrderController {
     @FXML
     private Label errorName;
     @FXML
-    private Label errorName2;
+    private Label errorAddress;
     @FXML
     private Label errorBase;
     @FXML
@@ -78,11 +78,16 @@ public class OrderController {
     @FXML
     Button spinButton;
 
+    @FXML
+    Text winPercent;
+
+    public double percentValue = 0.0;
+
     public void payableCalculation() {
         payable.setText(String.valueOf(1000));
 
         if ((base1.isSelected() && !base2.isSelected()) || (!base1.isSelected() && base2.isSelected())) {
-            payable.setText(String.valueOf(Integer.parseInt(payable.getText()) + 100));
+            payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100)));
         }
 
         if ((cheese1.isSelected() && !cheese2.isSelected() && !cheese3.isSelected() && !cheese4.isSelected())
@@ -90,17 +95,17 @@ public class OrderController {
             || (!cheese1.isSelected() && !cheese2.isSelected() && cheese3.isSelected() && !cheese4.isSelected())
             || (!cheese1.isSelected() && !cheese2.isSelected() && !cheese3.isSelected() && cheese4.isSelected())) {
 
-            payable.setText(String.valueOf(Integer.parseInt(payable.getText()) + 100));
+            payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100)));
         }
 
-        if (topping1.isSelected()) { payable.setText(String.valueOf(Integer.parseInt(payable.getText()) + 100)); }
-        if (topping2.isSelected()) { payable.setText(String.valueOf(Integer.parseInt(payable.getText()) + 100)); }
-        if (topping3.isSelected()) { payable.setText(String.valueOf(Integer.parseInt(payable.getText()) + 100)); }
-        if (topping4.isSelected()) { payable.setText(String.valueOf(Integer.parseInt(payable.getText()) + 100)); }
-        if (topping5.isSelected()) { payable.setText(String.valueOf(Integer.parseInt(payable.getText()) + 100)); }
-        if (topping6.isSelected()) { payable.setText(String.valueOf(Integer.parseInt(payable.getText()) + 100)); }
-        if (topping7.isSelected()) { payable.setText(String.valueOf(Integer.parseInt(payable.getText()) + 100)); }
-        if (topping8.isSelected()) { payable.setText(String.valueOf(Integer.parseInt(payable.getText()) + 100)); }
+        if (topping1.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
+        if (topping2.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
+        if (topping3.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
+        if (topping4.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
+        if (topping5.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
+        if (topping6.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
+        if (topping7.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
+        if (topping8.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
     }
 
     public void payableAction(ActionEvent event) throws IOException {
@@ -127,8 +132,9 @@ public class OrderController {
         if (name.getText().isEmpty()) {
             errorName.setText("Üres mező!");
         }
+
         if (address.getText().isEmpty()) {
-            errorName2.setText("Üres mező!");
+            errorAddress.setText("Üres mező!");
         }
 
         if (!name.getText().isEmpty() && !address.getText().isEmpty() &&
@@ -150,14 +156,17 @@ public class OrderController {
         five.setText(three.getText());
         three.setText(trash.getText());
 
+        percentValue = Double.parseDouble(zero.getText());
+        winPercent.setText(zero.getText());
     }
 
     public void spinAction(ActionEvent actionEvent) throws IOException {
         Random rand = new Random();
-        for (int i = 0; i < rand.nextInt(19); i++) {
+        for (int i = 0; i < rand.nextInt(9); i++) {
             oneSpin();
         }
 
+        payable.setText(String.valueOf(Double.parseDouble(payable.getText()) * (1-percentValue*0.01)));
         spinButton.setDisable(true);
     }
 

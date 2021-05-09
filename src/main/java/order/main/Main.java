@@ -1,7 +1,7 @@
 package order.main;
 
 import javafx.application.Application;
-import order.orderr.OrderApplication;
+import order.order_main.OrderApplication;
 
 public class Main {
 
