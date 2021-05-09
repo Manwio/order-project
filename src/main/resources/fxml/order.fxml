@@ -26,11 +26,11 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -45,23 +45,23 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <CheckBox fx:id="base1" mnemonicParsing="false" text="Paradicsom" GridPane.rowIndex="4" />
-            <CheckBox fx:id="base2" mnemonicParsing="false" text="Tejföl" GridPane.rowIndex="5" />
+            <CheckBox fx:id="base1" mnemonicParsing="false" onAction="#payableAction" text="Paradicsom" GridPane.rowIndex="3" />
+            <CheckBox fx:id="base2" mnemonicParsing="false" onAction="#payableAction" text="Tejföl" GridPane.rowIndex="4" />
 
-            <CheckBox mnemonicParsing="false" text="Trapista" GridPane.rowIndex="8" />
-            <CheckBox mnemonicParsing="false" text="Cheddar" GridPane.rowIndex="9" />
-            <CheckBox mnemonicParsing="false" text="Parmezán" GridPane.rowIndex="10" />
+            <CheckBox fx:id="cheese1" mnemonicParsing="false" onAction="#payableAction" text="Trapista" GridPane.rowIndex="7" />
+            <CheckBox fx:id="cheese2" mnemonicParsing="false" onAction="#payableAction" text="Cheddar" GridPane.rowIndex="8" />
+            <CheckBox fx:id="cheese3" mnemonicParsing="false" onAction="#payableAction" text="Parmezán" GridPane.rowIndex="9" />
+            <CheckBox fx:id="cheese4" mnemonicParsing="false" onAction="#payableAction" text="Mozzarella" GridPane.rowIndex="10" />
 
-            <CheckBox mnemonicParsing="false" text="Szalámi" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <CheckBox mnemonicParsing="false" text="Sonka" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <CheckBox mnemonicParsing="false" text="Bacon" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <CheckBox mnemonicParsing="false" text="Kukorica" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <CheckBox mnemonicParsing="false" text="Gomba" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <CheckBox mnemonicParsing="false" text="Tojás" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <CheckBox mnemonicParsing="false" text="Madársaláta" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <CheckBox mnemonicParsing="false" text="Paradicsom" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <CheckBox mnemonicParsing="false" text="Mozzarella" GridPane.rowIndex="11" />
+            <CheckBox fx:id="topping1" mnemonicParsing="false" onAction="#payableAction" text="Szalámi" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <CheckBox fx:id="topping2" mnemonicParsing="false" onAction="#payableAction" text="Sonka" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <CheckBox fx:id="topping3" mnemonicParsing="false" onAction="#payableAction" text="Bacon" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <CheckBox fx:id="topping4" mnemonicParsing="false" onAction="#payableAction" text="Kukorica" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <CheckBox fx:id="topping5" mnemonicParsing="false" onAction="#payableAction" text="Gomba" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <CheckBox fx:id="topping6" mnemonicParsing="false" onAction="#payableAction" text="Tojás" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <CheckBox fx:id="topping7" mnemonicParsing="false" onAction="#payableAction" text="Madársaláta" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <CheckBox fx:id="topping8" mnemonicParsing="false" onAction="#payableAction" text="Paradicsom" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
             <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="13">
                <center>
                   <TextField fx:id="name" BorderPane.alignment="CENTER" />
@@ -84,18 +84,19 @@
                    <Label fx:id="errorName2" textFill="RED" BorderPane.alignment="CENTER" />
                </bottom>
             </BorderPane>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alapok:" GridPane.rowIndex="3" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Feltétek:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sajtok:" GridPane.rowIndex="7" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rendelje meg pizzáját!" textAlignment="CENTER" GridPane.rowIndex="1" />
-            <Label fx:id="errorBase" textFill="#ff1313" GridPane.rowIndex="6" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alapok:" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Feltétek:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sajtok:" GridPane.rowIndex="6" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rendelje meg pizzáját!" textAlignment="CENTER" />
+            <Label fx:id="errorBase" textFill="#ff1313" GridPane.rowIndex="5" />
+            <Label fx:id="errorCheese" textFill="RED" BorderPane.alignment="CENTER" GridPane.rowIndex="11" />
          </children>
       </GridPane>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <TextField BorderPane.alignment="CENTER" />
+                  <TextField fx:id="payable" alignment="CENTER_RIGHT" text="0" BorderPane.alignment="CENTER" />
                </center>
                <left>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fizetendő:" BorderPane.alignment="CENTER" />
