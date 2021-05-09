@@ -9,12 +9,13 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="939.0" spacing="10.0" stylesheets="@order.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="order.orderr.OrderController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0" prefWidth="950.0" spacing="10.0" stylesheets="@order.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="order.orderr.OrderController">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -44,8 +45,8 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <CheckBox mnemonicParsing="false" text="Paradicsom" GridPane.rowIndex="4" />
-            <CheckBox mnemonicParsing="false" text="Tejföl" GridPane.rowIndex="5" />
+            <CheckBox fx:id="base1" mnemonicParsing="false" text="Paradicsom" GridPane.rowIndex="4" />
+            <CheckBox fx:id="base2" mnemonicParsing="false" text="Tejföl" GridPane.rowIndex="5" />
 
             <CheckBox mnemonicParsing="false" text="Trapista" GridPane.rowIndex="8" />
             <CheckBox mnemonicParsing="false" text="Cheddar" GridPane.rowIndex="9" />
@@ -87,22 +88,23 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Feltétek:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sajtok:" GridPane.rowIndex="7" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rendelje meg pizzáját!" textAlignment="CENTER" GridPane.rowIndex="1" />
+            <Label fx:id="errorBase" textFill="#ff1313" GridPane.rowIndex="6" />
          </children>
       </GridPane>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
-               <bottom>
-                  <Button mnemonicParsing="false" onAction="#startAction" text="Megrendelés leadása" BorderPane.alignment="CENTER" />
-               </bottom>
                <center>
                   <TextField BorderPane.alignment="CENTER" />
                </center>
                <left>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fizetendő:" BorderPane.alignment="CENTER" />
                </left>
+               <bottom>
+                  <Button mnemonicParsing="false" onAction="#startAction" text="Megrendelés leadása" BorderPane.alignment="CENTER" />
+               </bottom>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" />
+            <BorderPane prefHeight="100.0" prefWidth="122.0" />
             <BorderPane prefHeight="200.0" prefWidth="200.0">
                <left>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ön " BorderPane.alignment="CENTER" />
@@ -111,19 +113,30 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="{ }" BorderPane.alignment="CENTER" />
                </center>
                <right>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="\%-ot nyert!!!" BorderPane.alignment="CENTER" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="\%-ot nyert!!!" wrappingWidth="124.5185546875" BorderPane.alignment="CENTER" />
                </right></BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" />
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
-               <center>
-                  <Circle fill="#3d8eda" radius="100.0" stroke="BLACK" strokeType="INSIDE" BorderPane.alignment="CENTER" />
-               </center>
-               <left>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-&gt;" BorderPane.alignment="CENTER" />
-               </left>
+            <BorderPane prefHeight="100.0" prefWidth="127.0">
                <top>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pörgessen %-okért!" BorderPane.alignment="CENTER" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pörgessen %-okért!" wrappingWidth="156.0126953125" BorderPane.alignment="CENTER" />
                </top>
+               <center>
+                  <Button fx:id="spinButton" mnemonicParsing="false" onAction="#spinAction" prefHeight="21.0" prefWidth="108.0" text="PÖRGETÉS" BorderPane.alignment="CENTER" />
+               </center></BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <left>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-&gt;" wrappingWidth="27.51171875" BorderPane.alignment="CENTER" />
+               </left>
+               <center>
+                  <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Circle fill="DODGERBLUE" layoutX="101.0" layoutY="59.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Text fx:id="zero" layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0%" />
+                        <Text fx:id="three" layoutX="84.0" layoutY="-22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3%" />
+                        <Text fx:id="five" layoutX="167.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5%" />
+                        <Text fx:id="ten" layoutX="84.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10%" />
+                     </children>
+                  </Pane>
+               </center>
             </BorderPane>
          </children>
       </HBox>
