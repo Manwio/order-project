@@ -75,8 +75,10 @@ public class OrderController {
     @FXML
     Text ten;
 
+
     @FXML
     Button spinButton;
+
 
     @FXML
     Text winPercent;
@@ -168,6 +170,20 @@ public class OrderController {
 
         payable.setText(String.valueOf(Double.parseDouble(payable.getText()) * (1-percentValue*0.01)));
         spinButton.setDisable(true);
+        base1.setDisable(true);
+        base2.setDisable(true);
+        cheese1.setDisable(true);
+        cheese2.setDisable(true);
+        cheese3.setDisable(true);
+        cheese4.setDisable(true);
+        topping1.setDisable(true);
+        topping2.setDisable(true);
+        topping3.setDisable(true);
+        topping4.setDisable(true);
+        topping5.setDisable(true);
+        topping6.setDisable(true);
+        topping7.setDisable(true);
+        topping8.setDisable(true);
     }
 
 }
