@@ -76,17 +76,17 @@ public class OrderController {
     Text five;
     @FXML
     Text ten;
+    @FXML
+    Text winPercent;
 
 
     @FXML
     Button spinButton;
 
 
-    @FXML
-    Text winPercent;
-
     public boolean clicked;
     public double percentValue = 0.0;
+
 
     public void payableCalculation() {
         payable.setText(String.valueOf(1000));
@@ -126,8 +126,6 @@ public class OrderController {
             errorBase.setText("Válassz egy alapot!");
         }
 
-        else { errorBase.setText(""); }
-
         if (cheese1.isSelected() || cheese2.isSelected() || cheese3.isSelected() || cheese4.isSelected()) {
             errorCheese.setText("Csak egy sajt választható!");
         }
@@ -154,6 +152,20 @@ public class OrderController {
             stage.setScene(new Scene(root));
             stage.show();
         }
+    }
+
+    public void endAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+
+    public void restartAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/order.fxml"));
+        Parent root = fxmlLoader.load();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     private void oneSpin() {

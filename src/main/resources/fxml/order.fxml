@@ -167,5 +167,11 @@
             </BorderPane>
          </children>
       </HBox>
+      <Pane prefHeight="40.0" prefWidth="930.0">
+         <children>
+            <Button layoutY="21.0" mnemonicParsing="false" onAction="#endAction" text="Mégse" />
+            <Button layoutX="75.0" layoutY="21.0" onAction="#restartAction" mnemonicParsing="false" text="Újra" />
+         </children>
+      </Pane>
    </children>
 </VBox>

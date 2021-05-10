@@ -31,4 +31,11 @@ public class SuccessfullOrderController {
         stage.show();
     }
 
+    public void orderlistAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/orderlist.fxml"));
+        Parent root = fxmlLoader.load();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 }

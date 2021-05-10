@@ -2,13 +2,19 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="order.controller.SuccessfullOrderController">
+<AnchorPane prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="order.controller.SuccessfullOrderController">
    <children>
-      <Button layoutX="167.0" layoutY="194.0" mnemonicParsing="false" onAction="#endAction" text="Kész!" />
-      <Button layoutX="290.0" layoutY="194.0" mnemonicParsing="false" onAction="#newAction" text="Új rendelés leadása" />
-      <Text layoutX="151.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rendelésed fogadtuk. 45 perc múlva szállítjuk" />
+      <Button layoutX="91.0" layoutY="200.0" mnemonicParsing="false" onAction="#endAction" text="Fizetés" />
+      <Button layoutX="368.0" layoutY="200.0" mnemonicParsing="false" onAction="#newAction" text="Plusz rendelés leadása" />
+      <Text layoutX="222.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="45 perc múlva szállítjuk" />
+      <Text layoutX="136.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Köszönjük rendelését!">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Text>
+      <Button layoutX="203.0" layoutY="200.0" onAction="#orderlistAction" mnemonicParsing="false" text="Kosár tartalma" />
    </children>
 </AnchorPane>
