@@ -1,4 +1,4 @@
-package order.order_main;
+package order.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +26,8 @@ public class OrderController {
     private Label errorBase;
     @FXML
     private Label errorCheese;
+    @FXML
+    private Label errorSpin;
 
 
     @FXML
@@ -83,6 +85,7 @@ public class OrderController {
     @FXML
     Text winPercent;
 
+    public boolean clicked;
     public double percentValue = 0.0;
 
     public void payableCalculation() {
@@ -123,6 +126,8 @@ public class OrderController {
             errorBase.setText("Válassz egy alapot!");
         }
 
+        else { errorBase.setText(""); }
+
         if (cheese1.isSelected() || cheese2.isSelected() || cheese3.isSelected() || cheese4.isSelected()) {
             errorCheese.setText("Csak egy sajt választható!");
         }
@@ -131,16 +136,18 @@ public class OrderController {
             errorCheese.setText("Válassz sajtot!");
         }
 
-        if (name.getText().isEmpty()) {
-            errorName.setText("Üres mező!");
+        if (!spinButton.isDisable()) {
+            errorSpin.setText("Ne felejtsen el pörgetni!");
         }
 
-        if (address.getText().isEmpty()) {
-            errorAddress.setText("Üres mező!");
-        }
+        else { errorSpin.setText(""); }
 
-        if (!name.getText().isEmpty() && !address.getText().isEmpty() &&
-                ((base1.isSelected() && !base2.isSelected()) || (!base1.isSelected() && base2.isSelected()))) {
+        if (((base1.isSelected() && !base2.isSelected()) || (!base1.isSelected() && base2.isSelected()))
+                && ((cheese1.isSelected() && !cheese2.isSelected() && !cheese3.isSelected() && !cheese4.isSelected())
+                        || (!cheese1.isSelected() && cheese2.isSelected() && !cheese3.isSelected() && !cheese4.isSelected())
+                        || (!cheese1.isSelected() && !cheese2.isSelected() && cheese3.isSelected() && !cheese4.isSelected())
+                        || (!cheese1.isSelected() && !cheese2.isSelected() && !cheese3.isSelected() && cheese4.isSelected()))
+                && spinButton.isDisable()) {
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/successfulorder.fxml"));
             Parent root = fxmlLoader.load();
@@ -168,6 +175,7 @@ public class OrderController {
             oneSpin();
         }
 
+        spinButton.setOnAction(e-> { clicked = true; });
         payable.setText(String.valueOf(Double.parseDouble(payable.getText()) * (1-percentValue*0.01)));
         spinButton.setDisable(true);
         base1.setDisable(true);

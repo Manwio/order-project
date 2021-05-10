@@ -1,4 +1,4 @@
-package order.order_main;
+package order.main;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ public class OrderApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/order.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/launch.fxml"));
         stage.setTitle("Pizza Order");
         stage.setResizable(false);
         stage.setScene(new Scene(root));
