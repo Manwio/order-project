@@ -1,4 +1,4 @@
-package order.main;
+package orderapp.main;
 
 import javafx.application.Application;
 

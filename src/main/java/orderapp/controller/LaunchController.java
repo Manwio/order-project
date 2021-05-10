@@ -1,4 +1,4 @@
-package order.controller;
+package orderapp.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,14 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.EventObject;
 
 public class LaunchController {
 
     @FXML
-    TextField name;
+    public TextField nameInLaunch;
     @FXML
-    TextField address;
+    public TextField addressInLaunch;
 
 
     @FXML
@@ -28,19 +27,19 @@ public class LaunchController {
 
 
     public void orderAction(ActionEvent event) throws IOException {
-        if (name.getText().isEmpty()) {
+        if (nameInLaunch.getText().isEmpty()) {
             errorName.setText("Üres mező!");
         }
 
         else { errorName.setText(""); }
 
-        if (address.getText().isEmpty()) {
+        if (addressInLaunch.getText().isEmpty()) {
             errorAddress.setText("Üres mező!");
         }
 
         else { errorAddress.setText(""); }
 
-        if (!address.getText().isEmpty() && !name.getText().isEmpty()) {
+        if (!addressInLaunch.getText().isEmpty() && !nameInLaunch.getText().isEmpty()) {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/order.fxml"));
             Parent root = fxmlLoader.load();

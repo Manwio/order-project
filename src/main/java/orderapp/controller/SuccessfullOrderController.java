@@ -1,4 +1,4 @@
-package order.controller;
+package orderapp.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

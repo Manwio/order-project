@@ -8,12 +8,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="order.controller.OrderListController">
+<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orderapp.controller.OrderListController">
     <children>
-        <TableView fx:id="highScoreTable" editable="true" layoutX="25.0" layoutY="152.0" prefHeight="462.0" prefWidth="650.0">
+        <TableView fx:id="orderListTable" editable="true" layoutX="25.0" layoutY="152.0" prefHeight="462.0" prefWidth="650.0">
             <columns>
-                <TableColumn fx:id="order" prefWidth="532.0" text="Rendelés" />
-                <TableColumn fx:id="payvalue" prefWidth="117.0" text="Ár" />
+                <TableColumn fx:id="pizza" prefWidth="532.0" text="Rendelés" />
+                <TableColumn fx:id="cost" prefWidth="117.0" text="Ár" />
             </columns>
         </TableView>
         <Label layoutX="267.0" layoutY="14.0" text="Kosár tartalma">
@@ -31,13 +31,13 @@
             <Font size="22.0" />
          </font>
       </Text>
-      <Text fill="#2200ff" layoutX="188.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0"
+      <Text fx:id="orderName" fill="#2200ff" layoutX="188.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0"
             wrappingWidth="489.115234375">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <Text fill="#2200ff" layoutX="106.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="519.0">
+      <Text fx:id="orderAddress" fill="#2200ff" layoutX="106.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="519.0">
          <font>
             <Font size="22.0" />
          </font>
