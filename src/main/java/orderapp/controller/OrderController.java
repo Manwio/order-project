@@ -12,8 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import orderapp.cart.CartItems;
-import orderapp.cart.CartItemsDao;
 
 import java.io.IOException;
 import java.util.Random;
@@ -79,8 +77,6 @@ public class OrderController {
     @FXML
     Button spinButton;
 
-    private CartItemsDao cartItemsDao;
-
     public boolean clicked;
     public double percentValue = 0.0;
 
@@ -114,42 +110,6 @@ public class OrderController {
         payableCalculation();
     }
 
-    private String pizzaItems() {
-        String re = "";
-        if (base1.isSelected()) { re = re + base1.getText() + ";"; }
-        if (base2.isSelected()) { re = re + base2.getText() + ";"; }
-
-        if (cheese1.isSelected()) { re = re + cheese1.getText() + ";"; }
-        if (cheese2.isSelected()) { re = re + cheese2.getText() + ";"; }
-        if (cheese3.isSelected()) { re = re + cheese3.getText() + ";"; }
-        if (cheese4.isSelected()) { re = re + cheese4.getText() + ";"; }
-
-        if (topping1.isSelected()) { re = re + ";" + topping1.getText() + ";"; }
-        if (topping2.isSelected()) { re = re + ";" + topping2.getText() + ";"; }
-        if (topping3.isSelected()) { re = re + ";" + topping3.getText() + ";"; }
-        if (topping4.isSelected()) { re = re + ";" + topping4.getText() + ";"; }
-        if (topping5.isSelected()) { re = re + ";" + topping5.getText() + ";"; }
-        if (topping6.isSelected()) { re = re + ";" + topping6.getText() + ";"; }
-        if (topping7.isSelected()) { re = re + ";" + topping7.getText() + ";"; }
-        if (topping8.isSelected()) { re = re + ";" + topping8.getText() + ";"; }
-
-        return re;
-    }
-
-    public CartItems createGameResult() {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/fxml/launch.fxml"));
-        String s = fxmlLoader.<LaunchController>getController().nameInLaunch.getText();
-        String a = fxmlLoader.<LaunchController>getController().addressInLaunch.getText();
-
-        return CartItems.builder()
-                .name(s)
-                .address(a)
-                .pizza(pizzaItems())
-                .cost(payable.getText())
-                .build();
-    }
-
 
     public void startAction(ActionEvent actionEvent) throws IOException {
         if (base1.isSelected() && base2.isSelected()) {
@@ -181,9 +141,11 @@ public class OrderController {
                         || (!cheese1.isSelected() && !cheese2.isSelected() && !cheese3.isSelected() && cheese4.isSelected()))
                 && spinButton.isDisable()) {
 
+            /*
             //log.debug("Saving order to database..");
             cartItemsDao = new CartItemsDao();
             cartItemsDao.persist(createGameResult());
+            */
 
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/successfulorder.fxml"));

@@ -31,13 +31,13 @@
             <Font size="22.0" />
          </font>
       </Text>
-      <Text fx:id="orderName" fill="#2200ff" layoutX="188.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0"
+      <Text fill="#2200ff" layoutX="188.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0"
             wrappingWidth="489.115234375">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <Text fx:id="orderAddress" fill="#2200ff" layoutX="106.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="519.0">
+      <Text fill="#2200ff" layoutX="106.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="519.0">
          <font>
             <Font size="22.0" />
          </font>
