@@ -141,12 +141,6 @@ public class OrderController {
                         || (!cheese1.isSelected() && !cheese2.isSelected() && !cheese3.isSelected() && cheese4.isSelected()))
                 && spinButton.isDisable()) {
 
-            /*
-            //log.debug("Saving order to database..");
-            cartItemsDao = new CartItemsDao();
-            cartItemsDao.persist(createGameResult());
-            */
-
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/successfulorder.fxml"));
             Parent root = fxmlLoader.load();
