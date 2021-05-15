@@ -19,7 +19,6 @@ public class LaunchController {
     @FXML
     public TextField addressInLaunch;
 
-
     @FXML
     Label errorName;
     @FXML
@@ -43,6 +42,9 @@ public class LaunchController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/order.fxml"));
             Parent root = fxmlLoader.load();
+            fxmlLoader.<OrderController>getController().setOrderNameForSave(nameInLaunch.getText());
+            fxmlLoader.<OrderController>getController().setOrderAddressForSave(addressInLaunch.getText());
+
             stage.setScene(new Scene(root));
             stage.show();
         }

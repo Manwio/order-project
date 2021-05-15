@@ -1,21 +1,20 @@
 package cartdata;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@lombok.Data
+@lombok.NoArgsConstructor
+@lombok.AllArgsConstructor
 public class CartItems {
 
-    private String orderName;
+    @JsonProperty("orderCode") private String code;
 
-    private String orderAddress;
+    @JsonProperty("name") private String name;
 
-    private String pizzaItems;
+    @JsonProperty("address") private String address;
 
-    private String payVal;
+    @JsonProperty("pizza") private String pizza;
+
+    @JsonProperty("pay") double pay;
+
 }

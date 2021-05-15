@@ -1,5 +1,8 @@
 package orderapp.controller;
 
+import cartdata.CartItems;
+import cartdata.CartSerializer;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,21 +15,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import modell.Pizza;
 
 import java.io.IOException;
 import java.util.Random;
 
 public class OrderController {
-    @FXML
-    private Label errorName;
-    @FXML
-    private Label errorAddress;
+
     @FXML
     private Label errorBase;
     @FXML
     private Label errorCheese;
     @FXML
     private Label errorSpin;
+
 
     @FXML
     public TextField payable;
@@ -80,34 +82,50 @@ public class OrderController {
     public boolean clicked;
     public double percentValue = 0.0;
 
+    //////////
+    public String orderName;
+    public String orderAddress;
+    /////////
 
-    public void payableCalculation() {
-        payable.setText(String.valueOf(1000));
+    //#############
+    public Pizza pizzaM;
+    Random rand = new Random();
+    public String orderCode = String.valueOf(rand.nextInt(9999));
+    //#############
 
-        if ((base1.isSelected() && !base2.isSelected()) || (!base1.isSelected() && base2.isSelected())) {
-            payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100)));
-        }
+    public void setOrderNameForSave(String orderName) { this.orderName = orderName; }
+    public void setOrderAddressForSave(String orderAddress) { this.orderAddress = orderAddress; }
 
-        if ((cheese1.isSelected() && !cheese2.isSelected() && !cheese3.isSelected() && !cheese4.isSelected())
-            || (!cheese1.isSelected() && cheese2.isSelected() && !cheese3.isSelected() && !cheese4.isSelected())
-            || (!cheese1.isSelected() && !cheese2.isSelected() && cheese3.isSelected() && !cheese4.isSelected())
-            || (!cheese1.isSelected() && !cheese2.isSelected() && !cheese3.isSelected() && cheese4.isSelected())) {
+    private void setPizza() {
+        pizzaM = new Pizza(base1, base2,
+                cheese1, cheese2, cheese3, cheese4,
+                topping1, topping2, topping3, topping4, topping5, topping6, topping7, topping8);
+    }
 
-            payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100)));
-        }
+    private void setPercentValue(double percentValue) { pizzaM.percentVal = this.percentValue; }
 
-        if (topping1.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
-        if (topping2.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
-        if (topping3.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
-        if (topping4.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
-        if (topping5.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
-        if (topping6.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
-        if (topping7.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
-        if (topping8.isSelected()) { payable.setText(String.valueOf((Double.parseDouble(payable.getText()) + 100))); }
+    private void setOrderCode(String orderCode) {
+        pizzaM.orderCode = this.orderCode;
+    }
+
+    public String getOrderCode() {
+        return orderCode;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void initialize(){
+        Platform.runLater(()->{
+            setPizza();
+            pizzaM.whatsOnPizza();
+            pizzaM.payableCalculation();
+            setOrderCode(orderCode);
+        });
     }
 
     public void payableAction(ActionEvent event) throws IOException {
-        payableCalculation();
+        pizzaM.payableCalculation();
+
     }
 
 
@@ -134,12 +152,15 @@ public class OrderController {
 
         else { errorSpin.setText(""); }
 
+
         if (((base1.isSelected() && !base2.isSelected()) || (!base1.isSelected() && base2.isSelected()))
                 && ((cheese1.isSelected() && !cheese2.isSelected() && !cheese3.isSelected() && !cheese4.isSelected())
                         || (!cheese1.isSelected() && cheese2.isSelected() && !cheese3.isSelected() && !cheese4.isSelected())
                         || (!cheese1.isSelected() && !cheese2.isSelected() && cheese3.isSelected() && !cheese4.isSelected())
                         || (!cheese1.isSelected() && !cheese2.isSelected() && !cheese3.isSelected() && cheese4.isSelected()))
                 && spinButton.isDisable()) {
+
+            saveOrder();
 
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/successfulorder.fxml"));
@@ -148,6 +169,7 @@ public class OrderController {
             stage.show();
         }
     }
+
 
     public void endAction(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -173,6 +195,8 @@ public class OrderController {
         three.setText(trash.getText());
 
         percentValue = Double.parseDouble(zero.getText());
+        setPercentValue(percentValue);
+        pizzaM.payableCalculation();
         winPercent.setText(zero.getText());
     }
 
@@ -183,8 +207,11 @@ public class OrderController {
         }
 
         spinButton.setOnAction(e-> { clicked = true; });
-        payable.setText(String.valueOf(Double.parseDouble(payable.getText()) * (1-percentValue*0.01)));
+
+        payable.setText(String.valueOf(pizzaM.payableCalculation()));
+
         spinButton.setDisable(true);
+
         base1.setDisable(true);
         base2.setDisable(true);
         cheese1.setDisable(true);
@@ -200,5 +227,11 @@ public class OrderController {
         topping7.setDisable(true);
         topping8.setDisable(true);
     }
+
+    public void saveOrder() {
+        CartItems result = new CartItems(orderCode, orderName, orderAddress, pizzaM.whatsOnPizza(), pizzaM.payableCalculation());
+        CartSerializer.serialize(result);
+    }
+
 
 }
