@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="orderapp.controller.LaunchController">
    <children>
-      <Button layoutX="462.0" layoutY="252.0" mnemonicParsing="false" onAction="#orderAction" text="Rendelek" />
+      <Button layoutX="470.0" layoutY="251.0" mnemonicParsing="false" onAction="#orderAction" text="Rendelek" />
       <TextField fx:id="nameInLaunch" layoutX="230.0" layoutY="128.0" prefHeight="31.0" prefWidth="313.0" />
       <TextField fx:id="addressInLaunch" layoutX="230.0" layoutY="192.0" prefHeight="31.0" prefWidth="313.0" />
       <Text layoutX="175.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Név:">

@@ -95,6 +95,7 @@ public class OrderController {
     //#############
 
     public void setOrderNameForSave(String orderName) { this.orderName = orderName; }
+
     public void setOrderAddressForSave(String orderAddress) { this.orderAddress = orderAddress; }
 
     private void setPizza() {
@@ -103,10 +104,18 @@ public class OrderController {
                 topping1, topping2, topping3, topping4, topping5, topping6, topping7, topping8);
     }
 
-    private void setPercentValue(double percentValue) { pizzaM.percentVal = this.percentValue; }
-
     private void setOrderCode(String orderCode) {
         pizzaM.orderCode = this.orderCode;
+    }
+
+    private void setPercentValue(double percentValue) { pizzaM.percentValue = this.percentValue; }
+
+    private void setPercentTexts(Text zero, Text ten, Text five, Text three, Text winPercent) {
+        pizzaM.zero = this.zero;
+        pizzaM.ten = this.ten;
+        pizzaM.five = this.five;
+        pizzaM.three = this.three;
+        pizzaM.winPercent = this.winPercent;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,11 +123,11 @@ public class OrderController {
     public void initialize(){
         Platform.runLater(()->{
             setPizza();
-            pizzaM.whatsOnPizza(base1, base2,
-                    cheese1, cheese2, cheese3, cheese4,
-                    topping1, topping2, topping3, topping4, topping5, topping6, topping7, topping8);
+            pizzaM.whatsOnPizza();
             pizzaM.payableCalculation();
             setOrderCode(orderCode);
+            setPercentValue(percentValue);
+            setPercentTexts(zero, ten, five, three, winPercent);
         });
     }
 
@@ -188,26 +197,9 @@ public class OrderController {
         Logger.info("Megrendelés újrakezdése ...");
     }
 
-    private void oneSpin() {
-        Text trash = new Text();
-
-        trash.setText(zero.getText());
-        zero.setText(ten.getText());
-        ten.setText(five.getText());
-        five.setText(three.getText());
-        three.setText(trash.getText());
-
-        percentValue = Double.parseDouble(zero.getText());
-        setPercentValue(percentValue);
-        pizzaM.payableCalculation();
-        winPercent.setText(zero.getText());
-    }
 
     public void spinAction(ActionEvent actionEvent) throws IOException {
-        Random rand = new Random();
-        for (int i = 0; i < rand.nextInt(9); i++) {
-            oneSpin();
-        }
+        pizzaM.spinRandom(pizzaM.randGen());
 
         spinButton.setOnAction(e-> { clicked = true; });
 
@@ -234,9 +226,7 @@ public class OrderController {
     }
 
     public void saveOrder() {
-        CartItems result = new CartItems(orderCode, orderName, orderAddress, pizzaM.whatsOnPizza(base1, base2,
-                cheese1, cheese2, cheese3, cheese4,
-                topping1, topping2, topping3, topping4, topping5, topping6, topping7, topping8), pizzaM.payableCalculation());
+        CartItems result = new CartItems(orderCode, orderName, orderAddress, pizzaM.whatsOnPizza(), pizzaM.payableCalculation());
         CartSerializer.serialize(result);
     }
 

@@ -6,6 +6,19 @@
     <artifactId>order-project</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
+    <description>Openjfx project for SVE course.</description>
+    <developers>
+        <developer>
+            <name>Duba Anita Csilla</name>
+            <email>dub.nita@gmail.com</email>
+            <organization>Faculty of Informatics, University of Debrecen</organization>
+            <organizationUrl>https://inf.unideb.hu/</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <developerConnection>scm:git:https://github.com/Manwio/order-project.git</developerConnection>
+    </scm>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>11</maven.compiler.release>
@@ -75,6 +88,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

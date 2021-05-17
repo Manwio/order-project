@@ -1,6 +1,9 @@
 package modell;
 
 import javafx.scene.control.CheckBox;
+import javafx.scene.text.Text;
+
+import java.util.Random;
 
 public class Pizza {
 
@@ -9,13 +12,15 @@ public class Pizza {
     public CheckBox topping1, topping2, topping3, topping4, topping5, topping6, topping7, topping8;
 
     public double payable;
-    public double percentVal;
-
+    public double percentValue;
+    public Text zero, ten, five, three, winPercent;
     public String orderCode;
 
-    public String whatsOnPizza(CheckBox base1, CheckBox base2,
-                               CheckBox cheese1, CheckBox cheese2, CheckBox cheese3, CheckBox cheese4,
-                               CheckBox topping1,  CheckBox topping2, CheckBox topping3, CheckBox topping4, CheckBox topping5, CheckBox topping6, CheckBox topping7, CheckBox topping8) {
+
+    /**
+     * A metódus vissza adja, hogy miket kért rá a vásárló.
+     */
+    public String whatsOnPizza() {
         String re = "";
         if (base1.isSelected()) { re = re + base1.getText(); }
         if (base2.isSelected()) { re = re + base2.getText(); }
@@ -37,8 +42,14 @@ public class Pizza {
         return re;
     }
 
+    /**
+     * Paraméter nélküli konstruktor.
+     */
     public Pizza() {}
 
+    /**
+     * Konstruktor.
+     */
     public Pizza(CheckBox base1, CheckBox base2,
                  CheckBox cheese1, CheckBox cheese2, CheckBox cheese3, CheckBox cheese4,
                  CheckBox topping1,  CheckBox topping2, CheckBox topping3, CheckBox topping4, CheckBox topping5, CheckBox topping6, CheckBox topping7, CheckBox topping8) {
@@ -47,7 +58,44 @@ public class Pizza {
         this.topping1 = topping1; this.topping2 = topping2;  this.topping3 = topping3;  this.topping4 = topping4; this.topping5 = topping5; this.topping6 = topping6; this.topping7 = topping7; this.topping8 = topping8;
     }
 
+    /**
+     * A függvény egy cserét hajt végre, ami egyel további szöveg érték átadást jelent.
+     * A függvény egy pörgetésnek felel meg.
+     */
+    public void oneSpin() {
+        Text trash = new Text();
 
+        trash.setText(zero.getText());
+        zero.setText(ten.getText());
+        ten.setText(five.getText());
+        five.setText(three.getText());
+        three.setText(trash.getText());
+
+        percentValue = Double.parseDouble(zero.getText());
+        payableCalculation();
+        winPercent.setText(zero.getText());
+    }
+
+    /**
+     * A metódus egy random számot generál és int értékként adja vissza.
+     */
+    public int randGen() {
+        Random rand = new Random();
+        return rand.nextInt(9);
+    }
+
+    /**
+     * A függvény az oneSpin() függvényt futtatja egy random érték alapján.
+     */
+    public void spinRandom(int rand) {
+        for (int i = 0; i < rand; i++) {
+            oneSpin();
+        }
+    }
+
+    /**
+     * A metódus vissza adja, hogy mennyi a fizetendő érték, a kipörgetett %-okkal együtt.
+     */
     public double payableCalculation() {
         payable = 1000.0;
 
@@ -72,7 +120,7 @@ public class Pizza {
         if (topping7.isSelected()) { payable = (Double.parseDouble(String.valueOf(payable + 100))); }
         if (topping8.isSelected()) { payable = (Double.parseDouble(String.valueOf(payable + 100))); }
 
-        return payable * (1- (percentVal*0.01));
+        return payable * (1- (percentValue*0.01));
     }
 
 }

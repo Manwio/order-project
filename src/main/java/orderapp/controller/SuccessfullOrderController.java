@@ -9,33 +9,45 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.tinylog.Logger;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
+import java.io.*;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class SuccessfullOrderController {
 
-    private static void copyFile(File source, File dest) throws IOException {
-        Files.copy(source.toPath(), dest.toPath());
+    private static void copy(File src, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(src);
+            os = new FileOutputStream(dest);
+            byte[] buf = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = is.read(buf)) > 0) {
+                os.write(buf, 0, bytesRead); }
+        } finally { is.close(); os.close(); }
     }
 
+
     private void saveOrder() throws IOException {
-        File save = new File(System.getProperty("user.dir")
-                +File.separator+"order-save" +".json");
+        File save = new File("./ordersave" + ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss")) + ".json");
         save.createNewFile();
         File order = new File("./order.json");
-        copyFile(order, save);
+        copy(order, save);
 
-        File clean = new File("./clean.json");
-        copyFile(clean, order);
+        order.deleteOnExit();
+        if(order.delete())
+        {
+            Logger.debug("Rendelés mentése ...");
+        }
     }
 
     public void endAction(ActionEvent actionEvent) throws IOException {
-        //saveOrder();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.close();
         Logger.debug("{} gomb megnyomva.", ((Button)actionEvent.getSource()).getText());
         Logger.info("Fizetés, kilépés ...");
+        saveOrder();
     }
 
     public void newAction(ActionEvent actionEvent) throws IOException {
