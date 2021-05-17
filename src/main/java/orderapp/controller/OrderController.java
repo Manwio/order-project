@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import modell.Pizza;
+import org.tinylog.Logger;
 
 import java.io.IOException;
 import java.util.Random;
@@ -108,16 +109,14 @@ public class OrderController {
         pizzaM.orderCode = this.orderCode;
     }
 
-    public String getOrderCode() {
-        return orderCode;
-    }
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void initialize(){
         Platform.runLater(()->{
             setPizza();
-            pizzaM.whatsOnPizza();
+            pizzaM.whatsOnPizza(base1, base2,
+                    cheese1, cheese2, cheese3, cheese4,
+                    topping1, topping2, topping3, topping4, topping5, topping6, topping7, topping8);
             pizzaM.payableCalculation();
             setOrderCode(orderCode);
         });
@@ -159,9 +158,9 @@ public class OrderController {
                         || (!cheese1.isSelected() && !cheese2.isSelected() && cheese3.isSelected() && !cheese4.isSelected())
                         || (!cheese1.isSelected() && !cheese2.isSelected() && !cheese3.isSelected() && cheese4.isSelected()))
                 && spinButton.isDisable()) {
-
+            Logger.debug("{} gomb megnyomva.", ((Button)actionEvent.getSource()).getText());
             saveOrder();
-
+            Logger.info("Kosár elemeinek mentése ...");
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/successfulorder.fxml"));
             Parent root = fxmlLoader.load();
@@ -174,6 +173,8 @@ public class OrderController {
     public void endAction(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.close();
+        Logger.debug("{} gomb megnyomva.", ((Button)actionEvent.getSource()).getText());
+        Logger.info("Kilépés ...");
     }
 
 
@@ -183,6 +184,8 @@ public class OrderController {
         Parent root = fxmlLoader.load();
         stage.setScene(new Scene(root));
         stage.show();
+        Logger.debug("{} gomb megnyomva.", ((Button)event.getSource()).getText());
+        Logger.info("Megrendelés újrakezdése ...");
     }
 
     private void oneSpin() {
@@ -226,10 +229,14 @@ public class OrderController {
         topping6.setDisable(true);
         topping7.setDisable(true);
         topping8.setDisable(true);
+        Logger.debug("{} gomb megnyomva.", ((Button)actionEvent.getSource()).getText());
+        Logger.info("Pörgetés, fizetendő érték kiszámítása...");
     }
 
     public void saveOrder() {
-        CartItems result = new CartItems(orderCode, orderName, orderAddress, pizzaM.whatsOnPizza(), pizzaM.payableCalculation());
+        CartItems result = new CartItems(orderCode, orderName, orderAddress, pizzaM.whatsOnPizza(base1, base2,
+                cheese1, cheese2, cheese3, cheese4,
+                topping1, topping2, topping3, topping4, topping5, topping6, topping7, topping8), pizzaM.payableCalculation());
         CartSerializer.serialize(result);
     }
 

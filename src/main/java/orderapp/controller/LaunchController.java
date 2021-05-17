@@ -6,9 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.tinylog.Logger;
 
 import java.io.IOException;
 
@@ -48,10 +50,14 @@ public class LaunchController {
             stage.setScene(new Scene(root));
             stage.show();
         }
+        Logger.debug("{} gomb megnyomva.", ((Button)event.getSource()).getText());
+        Logger.info("A megrendelő nevének és címének beállítása, a következőkre: {}, {}.",nameInLaunch.getText(), addressInLaunch.getText());
     }
 
     public void endAction(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
+        Logger.debug("{} gomb megnyomva.", ((Button)event.getSource()).getText());
+        Logger.info("Kilépés ...");
     }
 }

@@ -13,7 +13,9 @@ public class Pizza {
 
     public String orderCode;
 
-    public String whatsOnPizza() {
+    public String whatsOnPizza(CheckBox base1, CheckBox base2,
+                               CheckBox cheese1, CheckBox cheese2, CheckBox cheese3, CheckBox cheese4,
+                               CheckBox topping1,  CheckBox topping2, CheckBox topping3, CheckBox topping4, CheckBox topping5, CheckBox topping6, CheckBox topping7, CheckBox topping8) {
         String re = "";
         if (base1.isSelected()) { re = re + base1.getText(); }
         if (base2.isSelected()) { re = re + base2.getText(); }

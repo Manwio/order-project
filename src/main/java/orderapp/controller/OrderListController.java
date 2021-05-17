@@ -10,14 +10,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.tinylog.Logger;
 
 import java.io.IOException;
 import java.util.List;
-
 
 public class OrderListController {
 
@@ -33,6 +34,7 @@ public class OrderListController {
 
     @FXML
     private void initialize() throws IOException {
+        Logger.debug("Kosár betöltése...");
         List<CartItems> orderListList = CartDeserializer.deserialize();
 
         payValue.setCellValueFactory(new PropertyValueFactory<CartItems, String>("pay"));
@@ -51,5 +53,7 @@ public class OrderListController {
         Parent root = fxmlLoader.load();
         stage.setScene(new Scene(root));
         stage.show();
+        Logger.debug("{} gomb megnyomva.", ((Button)event.getSource()).getText());
+        Logger.info("Kosár bezárása...");
     }
 }
