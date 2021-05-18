@@ -72,8 +72,7 @@ public class Pizza {
         three.setText(trash.getText());
 
         percentValue = Double.parseDouble(zero.getText());
-        payableCalculation();
-        winPercent.setText(zero.getText());
+
     }
 
     /**

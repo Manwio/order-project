@@ -202,7 +202,7 @@ public class OrderController {
         pizzaM.spinRandom(pizzaM.randGen());
 
         spinButton.setOnAction(e-> { clicked = true; });
-
+        winPercent.setText(zero.getText());
         payable.setText(String.valueOf(pizzaM.payableCalculation()));
 
         spinButton.setDisable(true);
