@@ -15,6 +15,6 @@
             <Font size="34.0" />
          </font>
       </Text>
-      <Button layoutX="203.0" layoutY="200.0" onAction="#orderlistAction" mnemonicParsing="false" text="Kosár tartalma" />
+      <Button layoutX="203.0" layoutY="200.0" mnemonicParsing="false" onAction="#orderlistAction" text="Kosár tartalma" />
    </children>
 </AnchorPane>

@@ -25,6 +25,7 @@
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -81,6 +82,30 @@
                </font></Text>
             <Label fx:id="errorBase" textFill="#ff1313" GridPane.rowIndex="5" />
             <Label fx:id="errorCheese" textFill="RED" BorderPane.alignment="CENTER" GridPane.rowIndex="11" />
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <right>
+                  <Button fx:id="glutenButton" onAction="#glutenAction" mnemonicParsing="false" text="Glutén érzékeny" textAlignment="RIGHT" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <right>
+                  <Button fx:id="lactoseButton" onAction="#lactoseAction" mnemonicParsing="false" text="Laktóz érzékeny" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
+               <right>
+                  <Button fx:id="veganButton" onAction="#veganAction" mnemonicParsing="false" text="Vega/Vegán" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <right>
+                  <Label text="Allergének:" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </right>
+            </BorderPane>
          </children>
       </GridPane>
       <HBox prefHeight="100.0" prefWidth="200.0">
@@ -139,7 +164,7 @@
                <center>
                   <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Circle fill="DODGERBLUE" layoutX="101.0" layoutY="59.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="#47eaff" layoutX="101.0" layoutY="59.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
                         <Text fx:id="zero" layoutX="14.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                            <font>
                               <Font size="32.0" />
@@ -170,7 +195,7 @@
       <Pane prefHeight="40.0" prefWidth="930.0">
          <children>
             <Button layoutY="21.0" mnemonicParsing="false" onAction="#endAction" text="Mégse" />
-            <Button layoutX="75.0" layoutY="21.0" onAction="#restartAction" mnemonicParsing="false" text="Újra" />
+            <Button layoutX="75.0" layoutY="21.0" mnemonicParsing="false" onAction="#restartAction" text="Újra" />
          </children>
       </Pane>
    </children>

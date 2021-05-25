@@ -80,6 +80,13 @@ public class OrderController {
 
     @FXML
     Button spinButton;
+    @FXML
+    Button glutenButton;
+    @FXML
+    Button lactoseButton;
+    @FXML
+    Button veganButton;
+
 
     public boolean clicked;
     public double percentValue = 0.0;
@@ -90,20 +97,18 @@ public class OrderController {
     /////////
 
     //#############
-
     public Pizza pizzaM;
     Random rand = new Random();
     public String orderCode = String.valueOf(rand.nextInt(9999));
-
     //#############
-
+    public String allergen = "|";
+    //#############
     public boolean bBase1 = false, bBase2 = false;
     public boolean bCheese1 = false, bCheese2 = false, bCheese3 = false, bCheese4 = false;
     public boolean bTopping1 = false, bTopping2 = false, bTopping3 = false, bTopping4 = false, bTopping5 = false, bTopping6 = false, bTopping7 = false, bTopping8 = false;
     public ArrayList<Boolean> pizza = new ArrayList<>();
     public ArrayList<Boolean> trueItems = new ArrayList<>();
     private ArrayList<Integer> pizzaItemZeroOne = new ArrayList<>();
-
     //#############
 
     private void setPizzaList() {
@@ -277,13 +282,42 @@ public class OrderController {
         topping6.setDisable(true);
         topping7.setDisable(true);
         topping8.setDisable(true);
+
+        glutenButton.setDisable(true);
+        lactoseButton.setDisable(true);
+        veganButton.setDisable(true);
+
         Logger.debug("{} gomb megnyomva.", ((Button)actionEvent.getSource()).getText());
         Logger.info("Pörgetés, fizetendő érték kiszámítása...");
     }
 
+    public void glutenAction(ActionEvent event) {
+        glutenButton.setOnAction(e -> clicked = true);
+        glutenButton.setDisable(true);
+        allergen += "GLUTÉN|";
+        Logger.debug("{} gomb megnyomva.", ((Button)event.getSource()).getText());
+    }
+
+    public void lactoseAction(ActionEvent event) {
+        lactoseButton.setOnAction(e -> clicked = true);
+        lactoseButton.setDisable(true);
+        allergen += "LAKTÓZ|";
+        Logger.debug("{} gomb megnyomva.", ((Button)event.getSource()).getText());
+    }
+
+    public void veganAction(ActionEvent event) {
+        veganButton.setOnAction(e -> clicked = true);
+        veganButton.setDisable(true);
+        allergen += "VEGÁN|";
+        Logger.debug("{} gomb megnyomva.", ((Button)event.getSource()).getText());
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     public void saveOrder() {
-        CartItems result = new CartItems(orderCode, orderName, orderAddress, pizzaM.whatsOnPizza(pizzaItemZeroOne), pizzaM.payableCalculation(trueItems));
+        CartItems result = new CartItems(orderCode, orderName, orderAddress, pizzaM.whatsOnPizza(pizzaItemZeroOne), allergen, pizzaM.payableCalculation(trueItems));
         CartSerializer.serialize(result);
     }
 

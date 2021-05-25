@@ -15,6 +15,8 @@ public class CartItems {
 
     @JsonProperty("pizza") private String pizza;
 
+    @JsonProperty("allergen") private String allergen;
+
     @JsonProperty("pay") double pay;
 
 }
