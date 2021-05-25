@@ -22,6 +22,10 @@ Az alkalmazás egy rendelést szimulál le.
 </ul>
 </ol>
 
-Apache Maven projekt a Szoftverfejlesztés nevű tárgyra. A projekt továbbá [JavaFX](https://openjfx.io/) -ben íródott.
+Apache Maven projekt Szoftverfejlesztés nevű tárgyra.
+A projekt továbbá [JavaFX](https://openjfx.io/) -ben íródott. Elindításához az alábbi parancsok szükségesek:
+>mvn package
+>
+>java -jar ./target/order-project-1.0.jar
 
 ***2021.05.***
