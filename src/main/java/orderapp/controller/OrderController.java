@@ -19,6 +19,7 @@ import modell.Pizza;
 import org.tinylog.Logger;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class OrderController {
@@ -89,51 +90,105 @@ public class OrderController {
     /////////
 
     //#############
+
     public Pizza pizzaM;
     Random rand = new Random();
     public String orderCode = String.valueOf(rand.nextInt(9999));
+
     //#############
+
+    public boolean bBase1 = false, bBase2 = false;
+    public boolean bCheese1 = false, bCheese2 = false, bCheese3 = false, bCheese4 = false;
+    public boolean bTopping1 = false, bTopping2 = false, bTopping3 = false, bTopping4 = false, bTopping5 = false, bTopping6 = false, bTopping7 = false, bTopping8 = false;
+    public ArrayList<Boolean> pizza = new ArrayList<>();
+    public ArrayList<Boolean> trueItems = new ArrayList<>();
+    private ArrayList<Integer> pizzaItemZeroOne = new ArrayList<>();
+
+    //#############
+
+    private void setPizzaList() {
+        bBase1 = base1.isSelected();
+        bBase2 = base2.isSelected();
+        bCheese1 = cheese1.isSelected();
+        bCheese2 = cheese2.isSelected();
+        bCheese3 = cheese3.isSelected();
+        bCheese4 = cheese4.isSelected();
+        bTopping1 = topping1.isSelected();
+        bTopping2 = topping2.isSelected();
+        bTopping3 = topping3.isSelected();
+        bTopping4 = topping4.isSelected();
+        bTopping5 = topping5.isSelected();
+        bTopping6 = topping6.isSelected();
+        bTopping7 = topping7.isSelected();
+        bTopping8 = topping8.isSelected();
+    }
+
+    private void setOtherLists() {
+        trueItems.clear();
+        pizzaItemZeroOne.clear();
+
+        if (base1.isSelected()) { bBase1 = true; trueItems.add(bBase1); pizzaItemZeroOne.add(1); } else { pizzaItemZeroOne.add(0); }
+        if (base2.isSelected()) { bBase2 = true; trueItems.add(bBase2); pizzaItemZeroOne.add(1); } else { pizzaItemZeroOne.add(0); }
+        if (cheese1.isSelected()) { bCheese1 = true; trueItems.add(bCheese1); pizzaItemZeroOne.add(1); } else { pizzaItemZeroOne.add(0); }
+        if (cheese2.isSelected()) { bCheese2 = true; trueItems.add(bCheese2); pizzaItemZeroOne.add(1); } else { pizzaItemZeroOne.add(0); }
+        if (cheese3.isSelected()) { bCheese3 = true; trueItems.add(bCheese3); pizzaItemZeroOne.add(1); } else { pizzaItemZeroOne.add(0); }
+        if (cheese4.isSelected()) { bCheese4 = true; trueItems.add(bCheese4); pizzaItemZeroOne.add(1); } else { pizzaItemZeroOne.add(0); }
+        if (topping1.isSelected()) { bTopping1 = true; trueItems.add(bTopping1); pizzaItemZeroOne.add(1); } else { pizzaItemZeroOne.add(0); }
+        if (topping2.isSelected()) { bTopping2 = true; trueItems.add(bTopping2); pizzaItemZeroOne.add(1); } else { pizzaItemZeroOne.add(0); }
+        if (topping3.isSelected()) { bTopping3 = true; trueItems.add(bTopping3); pizzaItemZeroOne.add(1); } else { pizzaItemZeroOne.add(0); }
+        if (topping4.isSelected()) { bTopping4 = true; trueItems.add(bTopping4); pizzaItemZeroOne.add(1); } else { pizzaItemZeroOne.add(0); }
+        if (topping5.isSelected()) { bTopping5 = true; trueItems.add(bTopping5); pizzaItemZeroOne.add(1); } else { pizzaItemZeroOne.add(0); }
+        if (topping6.isSelected()) { bTopping6 = true; trueItems.add(bTopping6); pizzaItemZeroOne.add(1); } else { pizzaItemZeroOne.add(0); }
+        if (topping7.isSelected()) { bTopping7 = true; trueItems.add(bTopping7); pizzaItemZeroOne.add(1); } else { pizzaItemZeroOne.add(0); }
+        if (topping8.isSelected()) { bTopping8 = true; trueItems.add(bTopping8); pizzaItemZeroOne.add(1); } else { pizzaItemZeroOne.add(0); }
+
+        pizza.add(bBase1); pizza.add(bBase2);
+        pizza.add(bCheese1); pizza.add(bCheese2); pizza.add(bCheese3); pizza.add(bCheese4);
+        pizza.add(bTopping1); pizza.add(bTopping2); pizza.add(bTopping3); pizza.add(bTopping4);
+        pizza.add(bTopping5); pizza.add(bTopping6); pizza.add(bTopping7); pizza.add(bTopping8);
+    }
+
+    public void setPizza() { pizzaM.pizzaModell = this.pizza; }
 
     public void setOrderNameForSave(String orderName) { this.orderName = orderName; }
 
     public void setOrderAddressForSave(String orderAddress) { this.orderAddress = orderAddress; }
 
-    private void setPizza() {
-        pizzaM = new Pizza(base1, base2,
-                cheese1, cheese2, cheese3, cheese4,
-                topping1, topping2, topping3, topping4, topping5, topping6, topping7, topping8);
-    }
+    private void setOrderCode() { this.orderCode = pizzaM.orderCode; }
 
-    private void setOrderCode(String orderCode) {
-        pizzaM.orderCode = this.orderCode;
-    }
+    private void setPercentValue() { this.percentValue = pizzaM.percentValue; }
 
-    private void setPercentValue(double percentValue) { pizzaM.percentValue = this.percentValue; }
+    private void setPercentTexts() {
+        setPizzaList();
+        zero.setText(pizzaM.zero);
+        ten.setText(pizzaM.ten);
+        five.setText(pizzaM.five);
+        three.setText(pizzaM.three);
 
-    private void setPercentTexts(Text zero, Text ten, Text five, Text three, Text winPercent) {
-        pizzaM.zero = this.zero;
-        pizzaM.ten = this.ten;
-        pizzaM.five = this.five;
-        pizzaM.three = this.three;
-        pizzaM.winPercent = this.winPercent;
+        winPercent.setText(pizzaM.zero);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void initialize(){
         Platform.runLater(()->{
+            pizzaM = new Pizza(pizza);
+
+            setPizzaList();
+            setOtherLists();
             setPizza();
-            pizzaM.whatsOnPizza();
-            pizzaM.payableCalculation();
-            setOrderCode(orderCode);
-            setPercentValue(percentValue);
-            setPercentTexts(zero, ten, five, three, winPercent);
+            pizzaM.whatsOnPizza(pizzaItemZeroOne);
+            pizzaM.payableCalculation(trueItems);
+            setOrderCode();
+            setPercentValue();
+            setPercentTexts();
         });
     }
 
-    public void payableAction(ActionEvent event) throws IOException {
-        pizzaM.payableCalculation();
 
+    public void payableAction() {
+        setOtherLists();
+        pizzaM.payableCalculation(trueItems);
     }
 
 
@@ -179,7 +234,7 @@ public class OrderController {
     }
 
 
-    public void endAction(ActionEvent actionEvent) throws IOException {
+    public void endAction(ActionEvent actionEvent) {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.close();
         Logger.debug("{} gomb megnyomva.", ((Button)actionEvent.getSource()).getText());
@@ -198,12 +253,13 @@ public class OrderController {
     }
 
 
-    public void spinAction(ActionEvent actionEvent) throws IOException {
+    public void spinAction(ActionEvent actionEvent) {
         pizzaM.spinRandom(pizzaM.randGen());
 
-        spinButton.setOnAction(e-> { clicked = true; });
-        winPercent.setText(zero.getText());
-        payable.setText(String.valueOf(pizzaM.payableCalculation()));
+        spinButton.setOnAction(e-> clicked = true);
+        payable.setText(String.valueOf(pizzaM.payableCalculation(trueItems)));
+        setPercentTexts();
+        setPizzaList();
 
         spinButton.setDisable(true);
 
@@ -225,8 +281,9 @@ public class OrderController {
         Logger.info("Pörgetés, fizetendő érték kiszámítása...");
     }
 
+
     public void saveOrder() {
-        CartItems result = new CartItems(orderCode, orderName, orderAddress, pizzaM.whatsOnPizza(), pizzaM.payableCalculation());
+        CartItems result = new CartItems(orderCode, orderName, orderAddress, pizzaM.whatsOnPizza(pizzaItemZeroOne), pizzaM.payableCalculation(trueItems));
         CartSerializer.serialize(result);
     }
 

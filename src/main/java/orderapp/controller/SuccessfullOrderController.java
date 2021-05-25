@@ -30,9 +30,9 @@ public class SuccessfullOrderController {
 
 
     private void saveOrder() throws IOException {
-        File save = new File("./ordersave" + ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss")) + ".json");
+        File save = new File(System.getProperty("user.home") + File.separator + "ordersave" + ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss")) + ".json");
         save.createNewFile();
-        File order = new File("./order.json");
+        File order = new File(System.getProperty("user.home") + File.separator + "order.json");
         copy(order, save);
 
         order.deleteOnExit();

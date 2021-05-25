@@ -15,7 +15,7 @@ public class CartSerializer {
 
         List<CartItems> cartResultList = CartDeserializer.deserialize();
         try {
-            File file = new File("./order.json");
+            File file = new File(System.getProperty("user.home") + File.separator + "order.json");
             file.createNewFile();
             FileWriter fileWriter = new FileWriter(file);
             ObjectMapper mapper = new ObjectMapper();

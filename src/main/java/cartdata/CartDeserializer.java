@@ -16,7 +16,7 @@ public class CartDeserializer {
         try{
             ObjectMapper mapper = new ObjectMapper();
             mapper.registerModule(new JavaTimeModule());
-            File file = new File("./order.json");
+            File file = new File(System.getProperty("user.home") + File.separator + "order.json");
             if(!file.exists()) {
                 file.createNewFile();
                 return List.of();
